@@ -6,7 +6,7 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.5
+#define FW_VERSION 1.6
 
 String new_url     = "";
 float  new_version = FW_VERSION;
