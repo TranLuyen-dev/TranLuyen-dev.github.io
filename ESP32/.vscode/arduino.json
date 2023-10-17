@@ -3,5 +3,6 @@
     "board": "esp32:esp32:esp32s3",
     "sketch": "ESP32.ino",
     "output": "Build",
-    "port": "COM25"
+    "port": "COM25",
+    "programmer": "esptool"
 }

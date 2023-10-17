@@ -240,10 +240,22 @@ C:\Users\Tran_Luyen\Documents\delete\GitOTA\TranLuyen-dev.github.io\ESP32\Build\
  C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson.h \
  C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson.hpp \
  C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson/Configuration.hpp \
- C:\Users\Tran_Luyen\Documents\Arduino\libraries\ESP32httpUpdate\src/ESP32httpUpdate.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\WiFi\src/WiFiUdp.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\Update\src/Update.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\cores\esp32/MD5Builder.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/esp_rom/include/esp_rom_md5.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\FS\src/FS.h \
- C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\SPIFFS\src/SPIFFS.h
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\Update\src/HttpsOTAUpdate.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/esp_http_client/include/esp_http_client.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/nghttp/port/include/http_parser.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/port/esp32/include/sys/socket.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/sockets.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/newlib/platform_include/sys/poll.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/netif.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/err.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/pbuf.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/stats.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/mem.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/memp.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/priv/memp_std.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/priv/memp_priv.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/priv/mem_priv.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/inet.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/errno.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/newlib/platform_include/net/if.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/lwip/lwip/src/include/lwip/if_api.h
