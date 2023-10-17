@@ -11,7 +11,7 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 2.0
+#define FW_VERSION 2.1
 
 String new_url     = "";
 float  new_version = FW_VERSION;
@@ -179,7 +179,6 @@ void loop() {
 		else if (s.indexOf("update") != -1) {
 			if (new_version > FW_VERSION) {
 				Serial.println("Update Available");
-				WiFiClient client;
 				httpUpdate.onStart(update_started);
 				httpUpdate.onEnd(update_finished);
 				httpUpdate.onProgress(update_progress);

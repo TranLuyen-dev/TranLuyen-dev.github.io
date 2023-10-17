@@ -180,7 +180,6 @@ void loop() {
   else if (s.indexOf("update") != -1) {
    if (new_version > 2.0) {
     Serial.println("Update Available");
-    WiFiClient client;
     httpUpdate.onStart(update_started);
     httpUpdate.onEnd(update_finished);
     httpUpdate.onProgress(update_progress);
