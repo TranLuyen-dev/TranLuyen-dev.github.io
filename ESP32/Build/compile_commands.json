@@ -770,11 +770,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFi.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiUdp.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",
@@ -1029,11 +1029,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiServer.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFi.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFi.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",
@@ -1806,11 +1806,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiScan.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiScan.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiServer.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiScan.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiServer.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",
@@ -2065,11 +2065,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiScan.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiUdp.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\WiFi\\WiFiScan.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiUdp.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFi\\src\\WiFiScan.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",
@@ -4654,11 +4654,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\FS.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\vfs_api.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\FS\\FS.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\FS\\vfs_api.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\FS.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\vfs_api.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",
@@ -4913,11 +4913,11 @@
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src",
    "-IC:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPIFFS\\src",
-   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\vfs_api.cpp",
+   "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\FS.cpp",
    "-o",
-   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\FS\\vfs_api.cpp.o"
+   "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\libraries\\FS\\FS.cpp.o"
   ],
-  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\vfs_api.cpp"
+  "file": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\FS\\src\\FS.cpp"
  },
  {
   "directory": "c:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32",

@@ -6,9 +6,9 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.3
+#define FW_VERSION 1.4
 
-String url_update  = "";
+String new_url     = "";
 float  new_version = FW_VERSION;
 
 t_httpUpdate_return updateOverHttp(String url_update) {
@@ -51,11 +51,11 @@ void get_version(void) {
 	StaticJsonDocument<1024> doc;
 	deserializeJson(doc, response);
 	JsonObject doc_obj = doc.as<JsonObject>();
-	url_update         = doc_obj["url"].as<String>();
+	new_url            = doc_obj["url"].as<String>();
 	new_version        = doc_obj["ver"].as<float>();
 
-	Serial.print("url_update: ");
-	Serial.println(url_update);
+	Serial.print("new_url: ");
+	Serial.println(new_url);
 	Serial.print("new version: ");
 	Serial.println(new_version);
 	// serializeJsonPretty(obj, Serial);
@@ -87,7 +87,7 @@ void loop() {
 		else if (s.indexOf("update") != -1) {
 			if (new_version > FW_VERSION) {
 				Serial.println("Update Available");
-				if (updateOverHttp(url_update) == HTTP_UPDATE_OK) { Serial.println("Update Success"); }
+				if (updateOverHttp(new_url) == HTTP_UPDATE_OK) { Serial.println("Update Success"); }
 				else { Serial.println("Update Failed"); }
 				Serial.println("Update Success");
 			}
