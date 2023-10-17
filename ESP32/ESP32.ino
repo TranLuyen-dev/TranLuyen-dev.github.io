@@ -6,10 +6,10 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.1
+#define FW_VERSION 1.3
 
 String url_update  = "";
-float  new_version = 1.1;
+float  new_version = FW_VERSION;
 
 t_httpUpdate_return updateOverHttp(String url_update) {
 	t_httpUpdate_return ret;

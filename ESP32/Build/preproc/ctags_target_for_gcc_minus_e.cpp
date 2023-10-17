@@ -10,7 +10,7 @@ const char *password = "khongcopass";
 
 
 String url_update = "";
-float new_version = 1.1;
+float new_version = 1.2;
 
 t_httpUpdate_return updateOverHttp(String url_update) {
  t_httpUpdate_return ret;
@@ -78,7 +78,7 @@ void setup() {
  Serial.println("WiFi connected");
 
  Serial.print("FW_VERSION: ");
- Serial.println(1.0);
+ Serial.println(1.2);
 }
 
 void loop() {
@@ -86,7 +86,7 @@ void loop() {
   String s = Serial.readString();
   if (s.indexOf("get") != -1) { get_version(); }
   else if (s.indexOf("update") != -1) {
-   if (new_version > 1.0) {
+   if (new_version > 1.2) {
     Serial.println("Update Available");
     if (updateOverHttp(url_update) == HTTP_UPDATE_OK) { Serial.println("Update Success"); }
     else { Serial.println("Update Failed"); }

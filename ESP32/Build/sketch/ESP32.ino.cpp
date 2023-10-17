@@ -8,10 +8,10 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.0
+#define FW_VERSION 1.2
 
 String url_update  = "";
-float  new_version = 1.1;
+float  new_version = FW_VERSION;
 
 #line 14 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 t_httpUpdate_return updateOverHttp(String url_update);
