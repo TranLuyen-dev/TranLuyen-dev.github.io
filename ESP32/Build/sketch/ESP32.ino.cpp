@@ -8,34 +8,30 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.5
+#define FW_VERSION 1.8
 
 String new_url     = "";
 float  new_version = FW_VERSION;
 
-TaskHandle_t task0;
-
-#line 17 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 15 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 t_httpUpdate_return updateOverHttp(String url_update);
-#line 43 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 41 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void get_version(void);
-#line 67 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 65 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void checkUpdate();
-#line 92 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 90 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void update_started();
-#line 94 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 92 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void update_finished();
-#line 96 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 94 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void update_progress(int cur, int total);
-#line 98 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 96 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void update_error(int err);
 #line 100 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
-void ledBlink(void *pvParameter);
-#line 110 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void setup();
-#line 129 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 118 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void loop();
-#line 17 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 15 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 t_httpUpdate_return updateOverHttp(String url_update) {
 	t_httpUpdate_return ret;
 
@@ -119,15 +115,7 @@ void update_progress(int cur, int total) { Serial.printf("CALLBACK:  HTTP update
 
 void update_error(int err) { Serial.printf("CALLBACK:  HTTP update fatal error code %d\n", err); }
 
-void ledBlink(void *pvParameter) {
-	for (;;) {
-		// Your Code
-		digitalWrite(LED_BUILTIN, HIGH);
-		delay(500);
-		digitalWrite(LED_BUILTIN, LOW);
-		delay(500);
-	}
-}
+
 
 void setup() {
 	Serial.begin(115200);
@@ -145,7 +133,6 @@ void setup() {
 	Serial.println("WiFi connected");
 	Serial.print("current version: ");
 	Serial.println(FW_VERSION);
-	xTaskCreatePinnedToCore(ledBlink, "ledBlink", 10000, NULL, 1, &task0, 0);
 }
 
 void loop() {
@@ -154,5 +141,4 @@ void loop() {
 		if (s.indexOf("get") != -1) { get_version(); }
 		else if (s.indexOf("update") != -1) { checkUpdate(); }
 	}
-	vTaskDelay(5000);
 }

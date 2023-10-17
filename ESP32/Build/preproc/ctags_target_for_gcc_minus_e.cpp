@@ -11,9 +11,7 @@ const char *password = "khongcopass";
 
 
 String new_url = "";
-float new_version = 1.5;
-
-TaskHandle_t task0;
+float new_version = 1.8;
 
 t_httpUpdate_return updateOverHttp(String url_update) {
  t_httpUpdate_return ret;
@@ -98,15 +96,7 @@ void update_progress(int cur, int total) { Serial.printf("CALLBACK:  HTTP update
 
 void update_error(int err) { Serial.printf("CALLBACK:  HTTP update fatal error code %d\n", err); }
 
-void ledBlink(void *pvParameter) {
- for (;;) {
-  // Your Code
-  digitalWrite(LED_BUILTIN, 0x1);
-  delay(500);
-  digitalWrite(LED_BUILTIN, 0x0);
-  delay(500);
- }
-}
+
 
 void setup() {
  Serial.begin(115200);
@@ -123,12 +113,7 @@ void setup() {
  }
  Serial.println("WiFi connected");
  Serial.print("current version: ");
- Serial.println(1.5);
- xTaskCreatePinnedToCore(ledBlink, "ledBlink", 10000, 
-# 126 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino" 3 4
-                                                     __null
-# 126 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
-                                                         , 1, &task0, 0);
+ Serial.println(1.8);
 }
 
 void loop() {
@@ -137,5 +122,4 @@ void loop() {
   if (s.indexOf("get") != -1) { get_version(); }
   else if (s.indexOf("update") != -1) { checkUpdate(); }
  }
- vTaskDelay(5000);
 }

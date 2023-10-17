@@ -7,12 +7,10 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.5
+#define FW_VERSION 1.8
 
 String new_url     = "";
 float  new_version = FW_VERSION;
-
-TaskHandle_t task0;
 
 t_httpUpdate_return updateOverHttp(String url_update) {
 	t_httpUpdate_return ret;
@@ -97,15 +95,7 @@ void update_progress(int cur, int total) { Serial.printf("CALLBACK:  HTTP update
 
 void update_error(int err) { Serial.printf("CALLBACK:  HTTP update fatal error code %d\n", err); }
 
-void ledBlink(void *pvParameter) {
-	for (;;) {
-		// Your Code
-		digitalWrite(LED_BUILTIN, HIGH);
-		delay(500);
-		digitalWrite(LED_BUILTIN, LOW);
-		delay(500);
-	}
-}
+
 
 void setup() {
 	Serial.begin(115200);
@@ -123,7 +113,6 @@ void setup() {
 	Serial.println("WiFi connected");
 	Serial.print("current version: ");
 	Serial.println(FW_VERSION);
-	xTaskCreatePinnedToCore(ledBlink, "ledBlink", 10000, NULL, 1, &task0, 0);
 }
 
 void loop() {
@@ -132,5 +121,4 @@ void loop() {
 		if (s.indexOf("get") != -1) { get_version(); }
 		else if (s.indexOf("update") != -1) { checkUpdate(); }
 	}
-	vTaskDelay(5000);
 }
