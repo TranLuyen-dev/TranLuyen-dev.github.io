@@ -31,6 +31,16 @@
   },
   {
     "Sourcefile": "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\sketch\\ESP32.ino.cpp",
+    "Include": "HTTPUpdate.h",
+    "Includepath": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\HTTPUpdate\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\sketch\\ESP32.ino.cpp",
+    "Include": "Update.h",
+    "Includepath": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src"
+  },
+  {
+    "Sourcefile": "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\Build\\sketch\\ESP32.ino.cpp",
     "Include": "",
     "Includepath": null
   },
@@ -96,6 +106,21 @@
   },
   {
     "Sourcefile": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFiClientSecure\\src\\ssl_client.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\HTTPUpdate\\src\\HTTPUpdate.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src\\HttpsOTAUpdate.cpp",
+    "Include": "",
+    "Includepath": null
+  },
+  {
+    "Sourcefile": "C:\\Users\\Tran_Luyen\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Update\\src\\Updater.cpp",
     "Include": "",
     "Includepath": null
   }

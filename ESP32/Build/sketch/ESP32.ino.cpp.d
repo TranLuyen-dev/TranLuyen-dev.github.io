@@ -239,4 +239,11 @@ C:\Users\Tran_Luyen\Documents\delete\GitOTA\TranLuyen-dev.github.io\ESP32\Build\
  C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/mbedtls/mbedtls/include/mbedtls/error.h \
  C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson.h \
  C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson.hpp \
- C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson/Configuration.hpp
+ C:\Users\Tran_Luyen\Documents\Arduino\libraries\ArduinoJson\src/ArduinoJson/Configuration.hpp \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\WiFi\src/WiFiMulti.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\WiFi\src/WiFi.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\HTTPUpdate\src/HTTPUpdate.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\WiFi\src/WiFiUdp.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\libraries\Update\src/Update.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6\cores\esp32/MD5Builder.h \
+ C:\Users\Tran_Luyen\AppData\Local\Arduino15\packages\esp32\hardware\esp32\2.0.6/tools/sdk/esp32s3/include/esp_rom/include/esp_rom_md5.h
