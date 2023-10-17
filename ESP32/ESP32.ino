@@ -1,21 +1,41 @@
 #include <WiFi.h>
-#include <HTTPClient.h>
 #include <ArduinoJson.h>
-
-#include <WiFiMulti.h>
 #include <HTTPClient.h>
-#include <HTTPUpdate.h>
-
-WiFiMulti WiFiMulti;
+#include <ESP32httpUpdate.h>
 
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
 #define FW_VERSION 1.0
 
-String url_update  = "";
-float  new_version = 1.1;
+String new_url     = "";
+float  new_version = FW_VERSION;
 
+t_httpUpdate_return updateOverHttp(String url_update) {
+	t_httpUpdate_return ret;
+
+	if ((WiFi.status() == WL_CONNECTED)) {
+
+		ret = ESPhttpUpdate.update(url_update);
+
+		switch (ret) {
+			case HTTP_UPDATE_FAILED:
+				Serial.printf("HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
+				return ret;
+				break;
+
+			case HTTP_UPDATE_NO_UPDATES:
+				Serial.println("HTTP_UPDATE_NO_UPDATES");
+				return ret;
+				break;
+
+			case HTTP_UPDATE_OK:
+				Serial.println("HTTP_UPDATE_OK");
+				return ret;
+				break;
+		}
+	}
+}
 
 void get_version(void) {
 	String     url_ver = "https://tranluyen-dev.github.io/info.json";
@@ -31,14 +51,39 @@ void get_version(void) {
 	StaticJsonDocument<1024> doc;
 	deserializeJson(doc, response);
 	JsonObject doc_obj = doc.as<JsonObject>();
-	url_update         = doc_obj["url"].as<String>();
+	new_url            = doc_obj["url"].as<String>();
 	new_version        = doc_obj["ver"].as<float>();
 
-	Serial.print("url_update: ");
-	Serial.println(url_update);
+	Serial.print("new_url: ");
+	Serial.println(new_url);
 	Serial.print("new version: ");
 	Serial.println(new_version);
 	// serializeJsonPretty(obj, Serial);
+}
+
+void checkUpdate() {
+	Serial.println("Checking update");
+	HTTPClient http;
+	String     response;
+	String     url = "https://tranluyen-dev.github.io/info.json";
+	http.begin(url);
+	http.GET();
+	response = http.getString();
+	Serial.println(response);
+	StaticJsonDocument<1024> doc;
+	deserializeJson(doc, response);
+	JsonObject doc_obj = doc.as<JsonObject>();
+	new_url            = doc_obj["url"].as<String>();
+	new_version        = doc_obj["ver"].as<float>();
+	Serial.print("new_url: ");
+	Serial.println(new_url);
+	Serial.print("new version: ");
+	Serial.println(new_version);
+
+	Serial.println("Update Available");
+	if (updateOverHttp(new_url) == HTTP_UPDATE_OK) { Serial.println("Update Success"); }
+	else { Serial.println("Update Failed"); }
+	Serial.println("Update Success");
 }
 
 void update_started() { Serial.println("CALLBACK:  HTTP update process started"); }
@@ -63,30 +108,14 @@ void setup() {
 		}
 	}
 	Serial.println("WiFi connected");
-
-	WiFiMulti.addAP(ssid, password);
+	Serial.print("current version: ");
+	Serial.println(FW_VERSION);
 }
 
 void loop() {
 	if (Serial.available()) {
 		String s = Serial.readString();
 		if (s.indexOf("get") != -1) { get_version(); }
-		else if (s.indexOf("update") != -1) {
-			WiFiClient client;
-			httpUpdate.onStart(update_started);
-			httpUpdate.onEnd(update_finished);
-			httpUpdate.onProgress(update_progress);
-			httpUpdate.onError(update_error);
-			t_httpUpdate_return ret = httpUpdate.update(client, url_update);
-			switch (ret) {
-				case HTTP_UPDATE_FAILED:
-					Serial.printf("HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
-					break;
-
-				case HTTP_UPDATE_NO_UPDATES: Serial.println("HTTP_UPDATE_NO_UPDATES"); break;
-
-				case HTTP_UPDATE_OK: Serial.println("HTTP_UPDATE_OK"); break;
-			}
-		}
+		else if (s.indexOf("update") != -1) { checkUpdate(); }
 	}
 }
