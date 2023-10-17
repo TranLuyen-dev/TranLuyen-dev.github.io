@@ -11,7 +11,7 @@
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 2.1
+#define FW_VERSION 2.3
 
 String new_url     = "";
 float  new_version = FW_VERSION;
@@ -163,6 +163,7 @@ void setup() {
 			delay(1000);
 		}
 	}
+	WiFiMulti.addAP(ssid, password);
 	Serial.println("WiFi connected");
 	setClock();
 	client.setCACert(rootCACertificate);
@@ -173,32 +174,35 @@ void setup() {
 }
 
 void loop() {
-	if (Serial.available()) {
-		String s = Serial.readString();
-		if (s.indexOf("get") != -1) { get_version(); }
-		else if (s.indexOf("update") != -1) {
-			if (new_version > FW_VERSION) {
-				Serial.println("Update Available");
-				httpUpdate.onStart(update_started);
-				httpUpdate.onEnd(update_finished);
-				httpUpdate.onProgress(update_progress);
-				httpUpdate.onError(update_error);
+	if ((WiFiMulti.run() == WL_CONNECTED)) {
 
-				t_httpUpdate_return ret = httpUpdate.update(client, new_url);
-				// Or:
-				// t_httpUpdate_return ret = httpUpdate.update(client, "server", 80, "/file.bin");
+		if (Serial.available()) {
+			String s = Serial.readString();
+			if (s.indexOf("get") != -1) { get_version(); }
+			else if (s.indexOf("update") != -1) {
+				if (new_version > FW_VERSION) {
+					Serial.println("Update Available");
+					httpUpdate.onStart(update_started);
+					httpUpdate.onEnd(update_finished);
+					httpUpdate.onProgress(update_progress);
+					httpUpdate.onError(update_error);
 
-				switch (ret) {
-					case HTTP_UPDATE_FAILED:
-						Serial.printf("HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
-						break;
+					t_httpUpdate_return ret = httpUpdate.update(client, new_url);
+					// Or:
+					// t_httpUpdate_return ret = httpUpdate.update(client, "server", 80, "/file.bin");
 
-					case HTTP_UPDATE_NO_UPDATES: Serial.println("HTTP_UPDATE_NO_UPDATES"); break;
+					switch (ret) {
+						case HTTP_UPDATE_FAILED:
+							Serial.printf("HTTP_UPDATE_FAILED Error (%d): %s\n", httpUpdate.getLastError(), httpUpdate.getLastErrorString().c_str());
+							break;
 
-					case HTTP_UPDATE_OK: Serial.println("HTTP_UPDATE_OK"); break;
+						case HTTP_UPDATE_NO_UPDATES: Serial.println("HTTP_UPDATE_NO_UPDATES"); break;
+
+						case HTTP_UPDATE_OK: Serial.println("HTTP_UPDATE_OK"); break;
+					}
 				}
+				else { Serial.println("No Update Available"); }
 			}
-			else { Serial.println("No Update Available"); }
 		}
 	}
 }
