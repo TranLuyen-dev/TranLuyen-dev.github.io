@@ -4,5 +4,14 @@
         "activityBar.background": "#263023",
         "titleBar.activeBackground": "#354431",
         "titleBar.activeForeground": "#F8FAF8"
+    },
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "unordered_map": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp"
     }
 }

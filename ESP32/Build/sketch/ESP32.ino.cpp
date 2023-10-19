@@ -1,167 +1,72 @@
 #include <Arduino.h>
 #line 1 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 #include <WiFi.h>
-#include <HTTPClient.h>
-#include <ArduinoJson.h>
-#include <HttpsOTAUpdate.h>
+#include <ESPmDNS.h>
+#include <WiFiUdp.h>
+#include <ArduinoOTA.h>
 
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#define FW_VERSION 1.6
-
-String new_url     = "";
-float  new_version = FW_VERSION;
-
-// t_httpUpdate_return updateOverHttp(String url_update) {
-// 	t_httpUpdate_return ret;
-
-// 	if ((WiFi.status() == WL_CONNECTED)) {
-
-// 		ret = ESPhttpUpdate.update(url_update);
-
-// 		switch (ret) {
-// 			case HTTP_UPDATE_FAILED:
-// 				Serial.printf("HTTP_UPDATE_FAILD Error (%d): %s", ESPhttpUpdate.getLastError(), ESPhttpUpdate.getLastErrorString().c_str());
-// 				return ret;
-// 				break;
-
-// 			case HTTP_UPDATE_NO_UPDATES:
-// 				Serial.println("HTTP_UPDATE_NO_UPDATES");
-// 				return ret;
-// 				break;
-
-// 			case HTTP_UPDATE_OK:
-// 				Serial.println("HTTP_UPDATE_OK");
-// 				return ret;
-// 				break;
-// 		}
-// 	}
-// }
-
-static const char *server_certificate = "-----BEGIN CERTIFICATE-----\n"
-                                        "MIIEkjCCA3qgAwIBAgIQCgFBQgAAAVOFc2oLheynCDANBgkqhkiG9w0BAQsFADA/\n"
-                                        "MSQwIgYDVQQKExtEaWdpdGFsIFNpZ25hdHVyZSBUcnVzdCBDby4xFzAVBgNVBAMT\n"
-                                        "DkRTVCBSb290IENBIFgzMB4XDTE2MDMxNzE2NDA0NloXDTIxMDMxNzE2NDA0Nlow\n"
-                                        "SjELMAkGA1UEBhMCVVMxFjAUBgNVBAoTDUxldCdzIEVuY3J5cHQxIzAhBgNVBAMT\n"
-                                        "GkxldCdzIEVuY3J5cHQgQXV0aG9yaXR5IFgzMIIBIjANBgkqhkiG9w0BAQEFAAOC\n"
-                                        "AQ8AMIIBCgKCAQEAnNMM8FrlLke3cl03g7NoYzDq1zUmGSXhvb418XCSL7e4S0EF\n"
-                                        "q6meNQhY7LEqxGiHC6PjdeTm86dicbp5gWAf15Gan/PQeGdxyGkOlZHP/uaZ6WA8\n"
-                                        "SMx+yk13EiSdRxta67nsHjcAHJyse6cF6s5K671B5TaYucv9bTyWaN8jKkKQDIZ0\n"
-                                        "Z8h/pZq4UmEUEz9l6YKHy9v6Dlb2honzhT+Xhq+w3Brvaw2VFn3EK6BlspkENnWA\n"
-                                        "a6xK8xuQSXgvopZPKiAlKQTGdMDQMc2PMTiVFrqoM7hD8bEfwzB/onkxEz0tNvjj\n"
-                                        "/PIzark5McWvxI0NHWQWM6r6hCm21AvA2H3DkwIDAQABo4IBfTCCAXkwEgYDVR0T\n"
-                                        "AQH/BAgwBgEB/wIBADAOBgNVHQ8BAf8EBAMCAYYwfwYIKwYBBQUHAQEEczBxMDIG\n"
-                                        "CCsGAQUFBzABhiZodHRwOi8vaXNyZy50cnVzdGlkLm9jc3AuaWRlbnRydXN0LmNv\n"
-                                        "bTA7BggrBgEFBQcwAoYvaHR0cDovL2FwcHMuaWRlbnRydXN0LmNvbS9yb290cy9k\n"
-                                        "c3Ryb290Y2F4My5wN2MwHwYDVR0jBBgwFoAUxKexpHsscfrb4UuQdf/EFWCFiRAw\n"
-                                        "VAYDVR0gBE0wSzAIBgZngQwBAgEwPwYLKwYBBAGC3xMBAQEwMDAuBggrBgEFBQcC\n"
-                                        "ARYiaHR0cDovL2Nwcy5yb290LXgxLmxldHNlbmNyeXB0Lm9yZzA8BgNVHR8ENTAz\n"
-                                        "MDGgL6AthitodHRwOi8vY3JsLmlkZW50cnVzdC5jb20vRFNUUk9PVENBWDNDUkwu\n"
-                                        "Y3JsMB0GA1UdDgQWBBSoSmpjBH3duubRObemRWXv86jsoTANBgkqhkiG9w0BAQsF\n"
-                                        "AAOCAQEA3TPXEfNjWDjdGBX7CVW+dla5cEilaUcne8IkCJLxWh9KEik3JHRRHGJo\n"
-                                        "uM2VcGfl96S8TihRzZvoroed6ti6WqEBmtzw3Wodatg+VyOeph4EYpr/1wXKtx8/\n"
-                                        "wApIvJSwtmVi4MFU5aMqrSDE6ea73Mj2tcMyo5jMd6jmeWUHK8so/joWUoHOUgwu\n"
-                                        "X4Po1QYz+3dszkDqMp4fklxBwXRsW10KXzPMTZ+sOPAveyxindmjkW8lGy+QsRlG\n"
-                                        "PfZ+G6Z6h7mjem0Y+iWlkYcV4PIWL1iwBi8saCbGS5jN2p8M+X+Q7UNKEkROb3N6\n"
-                                        "KOqkqm57TH2H3eDJAkSnh6/DNFu0Qg==\n"
-                                        "-----END CERTIFICATE-----";
-
-static HttpsOTAStatus_t otastatus;
-
-#line 70 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
-void HttpEvent(esp_http_client_event_t *event);
-#line 83 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
-void get_version(void);
-#line 107 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 9 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void setup();
-#line 129 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 65 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void loop();
-#line 70 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
-void HttpEvent(HttpEvent_t *event) {
-	switch (event->event_id) {
-		case HTTP_EVENT_ERROR: Serial.println("Http Event Error"); break;
-		case HTTP_EVENT_ON_CONNECTED: Serial.println("Http Event On Connected"); break;
-		case HTTP_EVENT_HEADER_SENT: Serial.println("Http Event Header Sent"); break;
-		case HTTP_EVENT_ON_HEADER: Serial.printf("Http Event On Header, key=%s, value=%s\n", event->header_key, event->header_value); break;
-		case HTTP_EVENT_ON_DATA: break;
-		case HTTP_EVENT_ON_FINISH: Serial.println("Http Event On Finish"); break;
-		case HTTP_EVENT_DISCONNECTED: Serial.println("Http Event Disconnected"); break;
-		// case HTTP_EVENT_REDIRECT: Serial.println("Http Event Redirect"); break;
-	}
-}
-
-void get_version(void) {
-	String     url_ver = "https://tranluyen-dev.github.io/info.json";
-	HTTPClient http;
-	String     response;
-
-	http.begin(url_ver);
-	http.GET();
-
-	response = http.getString();
-	Serial.println(response);
-
-	StaticJsonDocument<1024> doc;
-	deserializeJson(doc, response);
-	JsonObject doc_obj = doc.as<JsonObject>();
-	new_url            = doc_obj["url"].as<String>();
-	new_version        = doc_obj["ver"].as<float>();
-
-	Serial.print("new_url: ");
-	Serial.println(new_url);
-	Serial.print("new version: ");
-	Serial.println(new_version);
-	// serializeJsonPretty(obj, Serial);
-}
-
+#line 9 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void setup() {
 	Serial.begin(115200);
-	Serial.setTimeout(10);
-	delay(10);
+	Serial.println("Booting");
 	WiFi.mode(WIFI_STA);
 	WiFi.begin(ssid, password);
-
-	if (WiFi.waitForConnectResult() != WL_CONNECTED) {
-		Serial.println("WiFi Failed");
-		while (1) {
-			delay(1000);
-		}
+	while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+		Serial.println("Connection Failed! Rebooting...");
+		delay(5000);
+		ESP.restart();
 	}
-	Serial.println("WiFi connected");
 
-	HttpsOTA.onHttpEvent(HttpEvent);
-	Serial.println("Starting OTA");
+	// Port defaults to 3232
+	ArduinoOTA.setPort(3232);
 
-	Serial.print("FW_VERSION: ");
-	Serial.println(FW_VERSION);
+	// Hostname defaults to esp3232-[MAC]
+	// ArduinoOTA.setHostname("myesp32");
+
+	// No authentication by default
+	// ArduinoOTA.setPassword("admin");
+
+	// Password can be set with it's md5 value as well
+	// MD5(admin) = 21232f297a57a5a743894a0e4a801fc3
+	// ArduinoOTA.setPasswordHash("21232f297a57a5a743894a0e4a801fc3");
+
+	ArduinoOTA
+	    .onStart([]() {
+		    String type;
+		    if (ArduinoOTA.getCommand() == U_FLASH) type = "sketch";
+		    else // U_SPIFFS
+			    type = "filesystem";
+
+		    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
+		    Serial.println("Start updating " + type);
+	    })
+	    .onEnd([]() { Serial.println("\nEnd"); })
+	    .onProgress([](unsigned int progress, unsigned int total) { Serial.printf("Progress: %u%%\r\n", (progress / (total / 100))); })
+	    .onError([](ota_error_t error) {
+		    Serial.printf("Error[%u]: ", error);
+		    if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+		    else if (error == OTA_BEGIN_ERROR)
+			    Serial.println("Begin Failed");
+		    else if (error == OTA_CONNECT_ERROR)
+			    Serial.println("Connect Failed");
+		    else if (error == OTA_RECEIVE_ERROR)
+			    Serial.println("Receive Failed");
+		    else if (error == OTA_END_ERROR)
+			    Serial.println("End Failed");
+	    });
+
+	ArduinoOTA.begin();
+
+	Serial.println("Ready");
+	Serial.print("IP address: ");
+	Serial.println(WiFi.localIP());
 }
 
-void loop() {
-	if (Serial.available()) {
-		String s = Serial.readString();
-		if (s.indexOf("get") != -1) { get_version(); }
-		else if (s.indexOf("update") != -1) {
-			if (new_version > FW_VERSION) {
-				Serial.println("Update Available");
-				// if (updateOverHttp(new_url) == HTTP_UPDATE_OK) { Serial.println("Update Success"); }
-				// else { Serial.println("Update Failed"); }
-				// Serial.println("Update Success");
-				HttpsOTA.begin(new_url.c_str(), server_certificate);
-				if (otastatus == HTTPS_OTA_SUCCESS) {
-					Serial.println("Firmware written successfully. To reboot device, call API ESP.restart() or PUSH restart button on device");
-				}
-				else if (otastatus == HTTPS_OTA_FAIL) { Serial.println("Firmware Upgrade Fail"); }
-			}
-			else { Serial.println("No Update Available"); }
-		}
-		else {
-			int idx = s.indexOf("url=");
-			if (idx != -1) {
-				new_url = s.substring(idx + 4, s.length());
-				Serial.print("new url: ");
-				Serial.println(new_url);
-			}
-		}
-	}
-}
+void loop() { ArduinoOTA.handle(); }
