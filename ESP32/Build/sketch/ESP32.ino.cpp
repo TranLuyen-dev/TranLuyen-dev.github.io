@@ -1,27 +1,44 @@
 #include <Arduino.h>
 #line 1 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 #include <WiFi.h>
-#include <ESPmDNS.h>
-#include <WiFiUdp.h>
-#include <ArduinoOTA.h>
+
+#include "ESP_OTA.h"
 
 const char *ssid     = "Tenda RD";
 const char *password = "khongcopass";
 
-#line 9 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 8 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void setup();
-#line 65 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 21 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void loop();
-#line 9 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
+#line 3 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP_OTA.ino"
+bool esp_ota_init();
+#line 62 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP_OTA.ino"
+void esp_ota_handle(void);
+#line 8 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP32.ino"
 void setup() {
 	Serial.begin(115200);
-	Serial.println("Booting");
+	Serial.println("wifi connecting...");
 	WiFi.mode(WIFI_STA);
 	WiFi.begin(ssid, password);
 	while (WiFi.waitForConnectResult() != WL_CONNECTED) {
 		Serial.println("Connection Failed! Rebooting...");
-		delay(5000);
-		ESP.restart();
+		// delay(5000);
+		// ESP.restart();
+	}
+	esp_ota_init();
+}
+
+void loop() {
+	esp_ota_handle();
+}
+#line 1 "C:\\Users\\Tran_Luyen\\Documents\\delete\\GitOTA\\TranLuyen-dev.github.io\\ESP32\\ESP_OTA.ino"
+#include "ESP_OTA.h"
+
+bool esp_ota_init() {
+
+	while (WiFi.waitForConnectResult() != WL_CONNECTED) {
+		return false;
 	}
 
 	// Port defaults to 3232
@@ -45,28 +62,36 @@ void setup() {
 			    type = "filesystem";
 
 		    // NOTE: if updating SPIFFS this would be the place to unmount SPIFFS using SPIFFS.end()
-		    Serial.println("Start updating " + type);
+		    ota_debug("Start updating %s \r\n", type.c_str());
 	    })
-	    .onEnd([]() { Serial.println("\nEnd"); })
-	    .onProgress([](unsigned int progress, unsigned int total) { Serial.printf("Progress: %u%%\r\n", (progress / (total / 100))); })
+	    .onEnd([]() { ota_debug("\nEnd\r\n"); })
+	    .onProgress([](unsigned int progress, unsigned int total) {
+#ifdef ota_debug_enabled
+		    uint8_t percent = progress / (total / 100);
+		    if (percent != ota_progress) {
+			    ota_progress = percent;
+			    ota_debug("Progress: %u%%\r\n", (progress / (total / 100)));
+		    }
+#endif
+	    })
 	    .onError([](ota_error_t error) {
-		    Serial.printf("Error[%u]: ", error);
-		    if (error == OTA_AUTH_ERROR) Serial.println("Auth Failed");
+		    ota_debug("Error[%u]: ", error);
+		    if (error == OTA_AUTH_ERROR) ota_debug("Auth Failed\r\n");
 		    else if (error == OTA_BEGIN_ERROR)
-			    Serial.println("Begin Failed");
+			    ota_debug("Begin Failed\r\n");
 		    else if (error == OTA_CONNECT_ERROR)
-			    Serial.println("Connect Failed");
+			    ota_debug("Connect Failed\r\n");
 		    else if (error == OTA_RECEIVE_ERROR)
-			    Serial.println("Receive Failed");
+			    ota_debug("Receive Failed\r\n");
 		    else if (error == OTA_END_ERROR)
-			    Serial.println("End Failed");
+			    ota_debug("End Failed\r\n");
 	    });
 
 	ArduinoOTA.begin();
 
-	Serial.println("Ready");
-	Serial.print("IP address: ");
-	Serial.println(WiFi.localIP());
+	ota_debug("Ready\r\n");
+	ota_debug("IP address: %s", WiFi.localIP().toString().c_str());
+	return true;
 }
 
-void loop() { ArduinoOTA.handle(); }
+void esp_ota_handle(void) { ArduinoOTA.handle(); }
